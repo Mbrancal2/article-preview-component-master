@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Article preview component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+    :root
+    {
+      --clr-Very-Dark-Grayish-Blue: hsl(217, 19%, 35%);
+      --clr-Desaturated-Dark-Blue: hsl(214, 17%, 51%);
+      --clr-Grayish-Blue: hsl(212, 23%, 69%);
+      --clr-Light-Grayish-Blue: hsl(210, 46%, 95%);
+
+      --font-size : 0.81rem;
+      --fw-500: 500;
+      --fw-700: 700;
+
+      --font-family: 'Manrope';
+
+    }
+
+    *, *::before, *::after
+    {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body
+    {
+      font-size: 12.96px;
+      background-color: var(--clr-Light-Grayish-Blue);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: var(--font-family);
+    }
+    main
+    {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* max-width: 1440px; */
+
+      
+    }
+    .container
+    {
+      background-color: white;
+      display: flex;
+      margin: 2rem;
+      max-width: 800px;
+      border-radius: 0.5rem;
+      color: var(--clr-Desaturated-Dark-Blue);
+      /* margin: 4rem; */
+      /* background-color: white; 
+      max-width: 730px;
+      max-height: 300px;
+      display: flex; */
+      
+    }
+    .container-img
+    {
+      background-image: url('./images/drawers.jpg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      width: 40%;
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+
+    }
+    .container-text
+    {
+      display: flex;
+      flex-direction: column;
+      margin: 2.5rem;
+      gap: 1rem;
+      width: 60%;
+      
+    }
+    .container-text-header
+    {
+      color: var(--clr-Very-Dark-Grayish-Blue);
+    }
+    .container-text-socials
+    {
+      /* display: flex;
+      width: 100%;
+      justify-content: space-between; */
+      
+    }
+    .socials-text-img
+    {
+      width: 38px;
+      border-radius: 50%;
+    }
+    .socials-button
+    {
+      width: 30px;
+      height: 30px;
+      border: 0;
+      border-radius: 50%;
+      background-color: var(--clr-Light-Grayish-Blue);
+    }
+
+    .socials-text
+    {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .socials-text-name
+    {
+      color: var(--clr-Very-Dark-Grayish-Blue);
+      font-weight: var(--fw-700);
+    }
+    .socials-text-date
+    {
+      color: var(--clr-Grayish-Blue);
+    }
+    .socials-text-meta-info
+    {
+      display: flex;
+      flex-direction: column;
+    }
+    .container-text-socials
+    {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .pop-up-triangle
+    {
+      width: 45px;
+      height: 45px;
+      position: absolute;
+      transform: rotate(45deg);
+      background-color: var(--clr-Very-Dark-Grayish-Blue);
+    }
+    .pop-up
+    {
+      width: 250px;
+      height: 55px;
+      background-color: var(--clr-Very-Dark-Grayish-Blue);
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      border-radius: 0.5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      /* top: 50%;
+      right: 10%; */
+    }
+    .hidden
+    {
+      display: none;
+    }
+    .pop-up-item
+    {
+    
+    }
+    .pop-up-item-share
+    {
+      color: var(--clr-Desaturated-Dark-Blue);
+      letter-spacing: 5px;
+    }
+
+    .test
+    {
+      min-width: 100px;
+      min-height: 10px;
+      background-color: brown;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+    /* media query at 675 */
+    @media only screen and (max-width: 675px)
+    {
+      body
+      {
+        font-size: 0.81rem;
+        background-color: var(--clr-Light-Grayish-Blue);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: var(--font-family);
+      }
+
+      .container
+      {
+        background-color: white;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 2rem;
+        min-height: 75%;
+        /* gap: 1rem; */
+        /* height: 75%; */
+        /* max-width: 800px; */
+        border-radius: 0.5rem;
+        color: var(--clr-Desaturated-Dark-Blue);
+        /* gap: 0; */
+        /* margin: 4rem; */
+        /* background-color: white; 
+        max-width: 730px;
+        max-height: 300px;
+        display: flex; */
+      
+      }
+      .container-img
+      {
+        min-height: 50%;
+        /* height: 50%; */
+        width: 100%;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        border-bottom-left-radius: 0rem;
+        background-size: cover;
+        background-position: center
+
+      }
+      .container-text
+      {
+        
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        max-height: 50%;
+        width: 100%;
+      }
+      .container-text-header
+      {
+        font-size: 1.7em;
+        
+      }
+
+    }
+    /* media query width 489 */
+    @media only screen and (max-width: 489px)
+    {
+      .container-text
+      {
+        display: flex;
+        flex-direction: column;
+        padding-top: 0;
+        /* justify-content: space-between; */
+        max-height: 60%;
+        
+        width: 100%;
+      }
+      .container-img
+      {
+        max-height: 40%;
+      }
+      .container-text-header
+      {
+        font-size: 1.5em;
+      }
+
+
+    }
+    
+  </style>
+</head>
+<body>
+  <main>
+    <div class="container">
+      <div class="container-img">
+        <!-- <img class="container-img-img" src="./images/drawers.jpg"> -->
+      </div>
+      <div class="container-text">
+        <h1 class="container-text-header">
+          Shift the overall look and feel by adding these wonderful 
+          touches to furniture in your home
+        </h1>
+
+        <div class="container-text-body">
+          <p class="container-text-body-body">Ever been in a room and felt like something was missing? Perhaps 
+          it felt slightly bare and uninviting. I’ve got some simple tips 
+          to help you make any room feel complete.</p>
+        </div>
+        <div class="container-text-socials">
+          <div class="socials-text">
+            <img class="socials-text-img" src="./images/avatar-michelle.jpg">
+            <div class="socials-text-meta-info">
+              <span class="socials-text-name">Michelle Appleton</span>
+              <span class="socials-text-date">28 Jun 2020</span>
+            </div>
+          </div class="buttons">
+            <button class="socials-button">
+              <img class="button-icon-share" src="./images/icon-share.svg">
+            </button>
+            <script src="script.js"></script>
+            <div class="pop-up-triangle hidden"></div>
+            <div class="pop-up hidden">
+              <div class="pop-up-item" id="pop-up-share">
+                <p class="pop-up-item-share">SHARE</p>
+              </div>
+              <div class="pop-up-item" id="pop-up-facebook">
+                <img id="pop-up-item-icon-facebook" src="./images/icon-facebook.svg">
+              </div>
+              <div class="pop-up-item" id="pop-up-twitter">
+                <img id="pop-up-item-icon-twitter" src="./images/icon-twitter.svg">
+              </div>
+              <dic class="pop-up-item" id="pop-up-pinterest">
+                <img id="pop-up-item-icon-pinterest" src="./images/icon-pinterest.svg">
+              </dic>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- <div class="pop-up">
+        </div> -->
+    
+    </div>
+    <div class="test">
+
+    </div>
+  </main>
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+</body>
+</html>
